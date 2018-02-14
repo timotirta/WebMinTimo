@@ -8,6 +8,7 @@ file = open("Tujuan.html","wb")
 file.write(html)
 file.close()
 ctr=1
+print("Hasil : ")
 for link in soup.find_all('a'):
 	if link.get('href')[:4] == "http":
 		print(link.get('href'))
