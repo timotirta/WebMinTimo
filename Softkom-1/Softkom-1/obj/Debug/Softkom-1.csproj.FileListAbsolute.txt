@@ -16,3 +16,12 @@ C:\Users\tm_tr\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\
 C:\Users\tm_tr\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom-1.csproj.GenerateResource.Cache
 C:\Users\tm_tr\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom-1.exe
 C:\Users\tm_tr\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom-1.pdb
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\bin\Debug\Softkom-1.exe.config
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\bin\Debug\Softkom-1.exe
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\bin\Debug\Softkom-1.pdb
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom-1.csprojResolveAssemblyReference.cache
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom_1.Form1.resources
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom_1.Properties.Resources.resources
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom-1.csproj.GenerateResource.Cache
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom-1.exe
+C:\Users\owner\Desktop\Semester 6\Web Mining\WebMinTimo\Softkom-1\Softkom-1\obj\Debug\Softkom-1.pdb
