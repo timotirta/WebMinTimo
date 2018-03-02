@@ -18,11 +18,13 @@ namespace Softkom_1
             InitializeComponent();
         }
         List<Double[]> data = new List<Double[]>();
-        Double alpha = 0.6;
+        Double alpha = 0.0003;
         String[] nama;
         Random rnd = new Random();
         int iter = 1, iteration = 1000;
         Double[] y = new Double[1600];
+        Double[] min = new Double[11];
+        Double[] max = new Double[11];
         public void loadData()
         {
             bool awal = true;
@@ -54,6 +56,14 @@ namespace Softkom_1
                 }
             }
             sr.Close();
+            for (int i = 0; i < 1600; i++)
+            {
+                for (int j = 0; j < 11; j++)
+                {
+                    min[j] = min[j] > data[i][j] ? data[i][j] : min[j];
+                    max[j] = max[j] < data[i][j] ? data[i][j] : max[j];
+                }
+            }
         }
         public void saveTetha()
         {
@@ -72,8 +82,8 @@ namespace Softkom_1
             }
             sr.Close();
         }
-        Double[] tetha = { 0,0,0,0,0,0,0,0,0,0,0,0 };
-        Double[] temptetha = { 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 };
+        Double[] tetha = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        Double[] temptetha = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         Double h = 0.0;
         Timer tku = new Timer();
         List<Double> cfHasil = new List<Double>();
@@ -98,7 +108,7 @@ namespace Softkom_1
                     }
                     for (int j = 0; j < 11; j++)
                     {
-                        hasilku += ((h - y[i]) * data[i][j]) / (1599 * 2);
+                        hasilku += (h - y[i]) * (h - y[i]);
                         //Console.WriteLine(temptetha[0]);
                     }
                     for (int j = 0; j < 11; j++)
@@ -107,11 +117,24 @@ namespace Softkom_1
                     }
                 }
                 hasilku /= 11.0;
-                chart1.Series["Hnya"].Points.AddXY(iter + "", hasilku);
+                hasilku /= data.Count * 2;
+                chart1.Series["CostFunction"].Points.AddXY(iter + "", hasilku);
                 //if (hasilku <= 0) iter = iteration;
                 //Console.WriteLine(temptetha[0]);
                 //Console.WriteLine(tetha[0]);
                 //Console.WriteLine(h.ToString());
+                Console.WriteLine(hasilku);
+                numericUpDown33.Value = (decimal)tetha[0];
+                numericUpDown32.Value = (decimal)tetha[1];
+                numericUpDown31.Value = (decimal)tetha[2];
+                numericUpDown30.Value = (decimal)tetha[3];
+                numericUpDown29.Value = (decimal)tetha[4];
+                numericUpDown28.Value = (decimal)tetha[5];
+                numericUpDown27.Value = (decimal)tetha[6];
+                numericUpDown26.Value = (decimal)tetha[7];
+                numericUpDown25.Value = (decimal)tetha[8];
+                numericUpDown24.Value = (decimal)tetha[9];
+                numericUpDown12.Value = (decimal)tetha[10];
                 iter++;
                 saveTetha();
                 //Console.WriteLine("H(x) = " + tetha[0] + " x0 " + tetha[1] + " x1 " + tetha[2] + " x2 " + tetha[3] + " x3 " + tetha[4] + " x4 " + tetha[5] + " x5 " + tetha[6] + " x6 " + tetha[7] + " x7 " + tetha[8] + " x8 " + tetha[9] + " x9 " + tetha[10] + " x10");
@@ -131,9 +154,67 @@ namespace Softkom_1
         {
             //loadTetha();
             loadData();
+            //normalisasi
+            for (int i = 0; i < data.Count; i++)
+            {
+                for (int j = 0; j < 11; j++)
+                {
+                    data[i][j] = (data[i][j] - min[j]) / (max[j] - min[j]);
+                }
+            }
             tku.Interval = 1;
             tku.Tick += new EventHandler(timer1_Tick);
+        }
+        bool awalan = true;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            alpha = Convert.ToDouble(numericAlpha.Value);
+            if (awalan)
+            {
+                tetha[0] = Convert.ToDouble(numericUpDown1.Value);
+                tetha[1] = Convert.ToDouble(numericUpDown2.Value);
+                tetha[2] = Convert.ToDouble(numericUpDown3.Value);
+                tetha[3] = Convert.ToDouble(numericUpDown4.Value);
+                tetha[4] = Convert.ToDouble(numericUpDown5.Value);
+                tetha[5] = Convert.ToDouble(numericUpDown6.Value);
+                tetha[6] = Convert.ToDouble(numericUpDown7.Value);
+                tetha[7] = Convert.ToDouble(numericUpDown8.Value);
+                tetha[8] = Convert.ToDouble(numericUpDown9.Value);
+                tetha[9] = Convert.ToDouble(numericUpDown10.Value);
+                tetha[10] = Convert.ToDouble(numericUpDown11.Value);
+                iter = 0;
+                iteration = Convert.ToInt32(numericIterasi.Value);
+                awalan = false;
+            }
+            else
+            {
+                iteration += Convert.ToInt32(numericIterasi.Value);
+            }
             tku.Start();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Double hasil = 0;
+            Double[] xku1 = new Double[11];
+            xku1[0] = Convert.ToDouble(numericUpDown23.Value);
+            xku1[1] = Convert.ToDouble(numericUpDown22.Value);
+            xku1[2] = Convert.ToDouble(numericUpDown21.Value);
+            xku1[3] = Convert.ToDouble(numericUpDown20.Value);
+            xku1[4] = Convert.ToDouble(numericUpDown19.Value);
+            xku1[5] = Convert.ToDouble(numericUpDown18.Value);
+            xku1[6] = Convert.ToDouble(numericUpDown17.Value);
+            xku1[7] = Convert.ToDouble(numericUpDown16.Value);
+            xku1[8] = Convert.ToDouble(numericUpDown15.Value);
+            xku1[9] = Convert.ToDouble(numericUpDown14.Value);
+            xku1[10] = Convert.ToDouble(numericUpDown13.Value);
+            for (int i = 0; i < 11; i++)
+            {
+                hasil += tetha[i] * xku1[i];
+            }
+            hasil = hasil < 0 ? 0 : hasil;
+            hasil = hasil > 10 ? 10 : hasil;
+            numericPredict.Value = (decimal)hasil;
         }
         public void tampilkan()
         {
@@ -144,16 +225,9 @@ namespace Softkom_1
             {
                 hasil += tetha[i] * xku1[i];
             }
-            if (hasil == xku1[11])
-            {
-                Console.WriteLine("Benar");
-            }
-            else
-            {
                 Console.WriteLine("H = " + hasil);
                 Console.WriteLine("Asli = " + xku1[11]);
-                Console.WriteLine("Salah! Beda = " + (hasil - xku1[11]));
-            }
+                Console.WriteLine("Beda = " + (hasil - xku1[11]));
         }
     }
 }
